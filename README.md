@@ -32,8 +32,8 @@ To check installation, run:
 
 ## Setup project with docker
 
-1. `$ git clone https://github.com/raicg/user_manager`
-1. `$ cd user_manager`
+1. `$ git clone https://github.com/raicg/Fullstack-Developer`
+1. `$ cd Fullstack-Developer`
 1. `$ cp config/database.yml.sample config/database.yml`
 1. `$ cp .env.sample .env`
 1. `$ docker-compose run app bundle exec rake db:create`
@@ -46,8 +46,8 @@ To check installation, run:
 1. `$ docker-compose run app bundle exec rails s -b 0.0.0.0`
 
 ## Setup project without docker
-1. `$ git clone https://github.com/raicg/user_manager`
-1. `$ cd user_manager`
+1. `$ git clone https://github.com/raicg/Fullstack-Developer`
+1. `$ cd Fullstack-Developer`
 1. `$ cp config/database.yml.sample config/database.yml`
 1. `$ cp .env.sample .env`
 1. `$ bundle install`
