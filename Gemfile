@@ -78,6 +78,8 @@ group :test do
   gem 'factory_bot_rails', '5.2.0'
   # Use database_cleaner to erase tests database
   gem 'database_cleaner', '1.8.5'
+  # Use simplecov to check the specs coverage
+  gem 'simplecov', '0.18.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
