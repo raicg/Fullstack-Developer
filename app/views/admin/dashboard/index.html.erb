@@ -4,7 +4,9 @@
   <div class="card bg-primary text-white mb-4">
     <div class="card-body">
       <%= t(:no_admin_users, scope: 'dashboard') %>:
-      <span id="no_admin" class="float-right">0</span>
+      <span id="no_admin" class="float-right">
+        <%= @total_number_of_users_grouped['no_admin']%>
+      </span>
     </div>
   </div>
 </div>
@@ -13,7 +15,9 @@
   <div class="card bg-warning text-white mb-4">
     <div class="card-body">
       <%= t(:admin_users, scope: 'dashboard') %>:
-      <span id="admin" class="float-right">0</span>
+      <span id="admin" class="float-right">
+        <%= @total_number_of_users_grouped['admin']%>
+      </span>
     </div>
   </div>
 </div>
@@ -22,7 +26,9 @@
   <div class="card bg-success text-white mb-4">
     <div class="card-body">
       <%= t(:total_users, scope: 'dashboard') %>:
-      <span id="total_users" class="float-right">0</span>
+      <span id="total_users" class="float-right">
+        <%= @total_number_of_users %>
+      </span>
     </div>
   </div>
 </div>         
