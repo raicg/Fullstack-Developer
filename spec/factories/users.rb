@@ -4,6 +4,6 @@ FactoryBot.define do
     email { FFaker::Internet.email }
     password { 'changeme' }
     password_confirmation { 'changeme' }
-    avatar { Rack::Test::UploadedFile.new('spec/files/user_avatar.jpg', 'image/jpg') }
+    avatar { Rack::Test::UploadedFile.new('spec/fixtures/user_avatar.jpg', 'image/jpg') }
   end
 end
