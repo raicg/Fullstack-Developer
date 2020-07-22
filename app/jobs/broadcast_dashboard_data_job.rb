@@ -6,9 +6,9 @@ class BroadcastDashboardDataJob < ApplicationJob
     total_number_of_users = total_number_of_users_grouped.values.inject(&:+).to_i
     
     ActionCable.server.broadcast(
-      "dashboard_channel",
+      'dashboard_channel',
       total_number_of_users_grouped: total_number_of_users_grouped, 
-      total_number_of_users: total_number_of_users.to_s)
+      total_number_of_users: total_number_of_users)
 
     BroadcastDashboardDataJob.set(wait: 10.seconds).perform_later
   end
