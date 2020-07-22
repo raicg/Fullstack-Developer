@@ -33,7 +33,7 @@
             <% end -%>
           </td>
           <td class="text-center">
-            <%= link_to admin_user_path(user), method: :delete, data: { confirm: t(:are_you_sure) }, class: 'btn btn-danger' do %>
+            <%= link_to admin_user_path(user), method: :delete, data: { confirm: "#{t(:are_you_sure)}?" }, class: 'btn btn-danger' do %>
               <i class="fas fa-trash"></i> <%= t(:destroy) %>
             <% end -%>
           </td>
