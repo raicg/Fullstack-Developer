@@ -1,4 +1,4 @@
-class Admin::UserBulksController < ApplicationController
+class Admin::UserBulksController < AdminController
   # GET /user_bulks
   def index
     @user_bulks = UserBulk.all.paginate(page: params[:page])
