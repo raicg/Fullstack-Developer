@@ -28,12 +28,12 @@
           </li>
         </ul>
       </nav>
-      <div class="card mb-5">
+      <div class="card mb-5 border-bottom-0">
         <div class="card-header">
           <h2><%= yield :title %></h2>
         </div>
         <main>
-          <div class="container-fluid mt-3 content">
+          <div class="container container-fluid mt-3 content">
             <div class="row">
               <% if content_for?(:right) %>
                 <div class="col-12 mb-4 right-content">
