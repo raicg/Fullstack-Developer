@@ -30,7 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  brand_name: "User Manager"
+  are_you_sure: "Are you sure?"
+  company_slogan: "User Manager"
   back: "Back"
   create: "Create"
   show: "Show"
