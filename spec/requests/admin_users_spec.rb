@@ -16,24 +16,53 @@ RSpec.describe "/admin/users", type: :request do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      full_name: FFaker::Name.name,
+      email: FFaker::Internet.email,
+      password: 'changeme',
+      password_confirmation: 'changeme',
+      avatar: Rack::Test::UploadedFile.new('spec/fixtures/user_avatar.jpg', 'image/jpg')
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      full_name: nil,
+      email: nil,
+      password: 'changeme',
+      password_confirmation: 'changeme',
+      avatar: Rack::Test::UploadedFile.new('spec/fixtures/user_avatar.jpg', 'image/jpg')
+    }
   }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      User.create! valid_attributes
-      get admin_users_url
-      expect(response).to be_successful
+    context 'with a no_admin user' do
+      let!(:user) { create(:user) }
+      before { sign_in(user) }
+
+      it "returns http unauthorized" do
+        get admin_users_url
+        
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+    context 'with a admin user' do
+      let!(:user) { create(:user, role: 'admin') }
+      before { sign_in(user) }
+
+      it "returns http success" do
+        get admin_users_url
+        
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 
+  let!(:user) { create(:user, role: 'admin') }
+  before { sign_in(user) }
+
   describe "GET /show" do
     it "renders a successful response" do
-      user = User.create! valid_attributes
       get admin_user_url(user)
       expect(response).to be_successful
     end
@@ -48,7 +77,6 @@ RSpec.describe "/admin/users", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      user = User.create! valid_attributes
       get edit_admin_user_url(user)
       expect(response).to be_successful
     end
@@ -85,18 +113,22 @@ RSpec.describe "/admin/users", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          full_name: 'Updated Name',
+          email: FFaker::Internet.email,
+          password: 'changeme',
+          password_confirmation: 'changeme',
+          avatar: Rack::Test::UploadedFile.new('spec/fixtures/user_avatar.jpg', 'image/jpg')
+        }
       }
 
       it "updates the requested user" do
-        user = User.create! valid_attributes
         patch admin_user_url(user), params: { user: new_attributes }
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.full_name).to eq('Updated Name')
       end
 
       it "redirects to the user" do
-        user = User.create! valid_attributes
         patch admin_user_url(user), params: { user: new_attributes }
         user.reload
         expect(response).to redirect_to(admin_user_url(user))
@@ -105,7 +137,6 @@ RSpec.describe "/admin/users", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        user = User.create! valid_attributes
         patch admin_user_url(user), params: { user: invalid_attributes }
         expect(response).to be_successful
       end
@@ -114,14 +145,12 @@ RSpec.describe "/admin/users", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested user" do
-      user = User.create! valid_attributes
       expect {
         delete admin_user_url(user)
       }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users list" do
-      user = User.create! valid_attributes
       delete admin_user_url(user)
       expect(response).to redirect_to(admin_users_url)
     end

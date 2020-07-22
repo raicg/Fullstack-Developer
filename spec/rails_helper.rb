@@ -72,6 +72,7 @@ RSpec.configure do |config|
 
   config.include ActiveJob::TestHelper
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers
   
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -93,4 +94,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+end
+
+def setup(user)
+  sign_in user
 end

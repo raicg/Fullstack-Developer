@@ -28,11 +28,16 @@ class UserBulk < ApplicationRecord
       process! if may_process?
       spreadsheet = Roo::Excelx.new(opened_file, file_warning: :ignore)
       spreadsheet.each_row_streaming(offset: 1) do |row|
-        User.create(full_name: row[0].value,
-                    email: row[1].value,
-                    password: row[2].value,
-                    password_confirmation: row[2].value,
-                    role: row[3].value )
+        full_name = row[0].value
+        email = row[1].value
+        password = row[2].value
+        role = row[3].value
+
+        user = User.create(full_name: full_name,
+                    email: email,
+                    password: password,
+                    password_confirmation: password,
+                    role: role ) if User.roles.include?(role)
     end
       finish! if may_finish?
     end

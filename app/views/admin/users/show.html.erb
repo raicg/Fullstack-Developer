@@ -1,6 +1,32 @@
-<%= link_to 'Edit', edit_admin_user_path(@user) %> |
-<%= link_to 'Back', admin_users_path %>
+<%= title "#{t(:user, scope: 'activerecord.models')}: #{@user.full_name}" %>
 
-<%= @user.full_name %>
-<%= @user.email %>
+<%= content_for :right do %>
+  <%= link_to t(:edit), edit_admin_user_path(@user) %>
+  <%= link_to admin_users_path do %>
+    <i class="fas fa-arrow-left"></i> <%= t(:back) %>
+  <% end %>
+<% end %>
 
+<div class="col-xs-12 col-md-6 m-auto card pt-4 h-100 pb-3">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, class: 'rounded-circle d-block m-auto', size: '200x180' %>
+      <% else %>
+        <%= image_tag '/default_user_avatar.png', class: 'rounded-circle d-block m-auto', size: '200x180' %>
+      <% end %>
+    </div>
+
+    <div class="col-6 text-center">
+      <span class="label"><%= t(:full_name, scope: 'activerecord.attributes.user') %>:</span>
+      <br/>
+      <h4><%= current_user.full_name %></h4>
+    </div>
+
+    <div class="col-6 text-center">
+      <span class="label"><%= t(:email, scope: 'activerecord.attributes.user') %>:</span>
+      <br/>
+      <h4><%= current_user.email %></h4>
+    </div>
+  </div>
+</div>

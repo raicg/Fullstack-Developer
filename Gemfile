@@ -74,10 +74,14 @@ group :test do
   gem 'webdrivers', '4.4.1'
   # Use rspec-sidekiq to test jobs
   gem 'rspec-sidekiq', '3.0.3'
-  # Use factory_bot_rails to help with the tests
+  # Use factory_bot_rails to help with the tests creating objects
   gem 'factory_bot_rails', '5.2.0'
+  # Use FFaker to help with the fields of the objects on the tests
+  gem 'ffaker'
   # Use database_cleaner to erase tests database
   gem 'database_cleaner', '1.8.5'
+  # Use simplecov to check the specs coverage
+  gem 'simplecov', '0.18.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
