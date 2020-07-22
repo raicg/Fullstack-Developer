@@ -17,7 +17,7 @@ class User < ApplicationRecord
   private
     def attach_avatar_from_url!
       if avatar_url.present?
-        downloaded_image = open(avatar_url.to_s)
+        downloaded_image = URI.open(avatar_url.to_s)
         self.avatar.attach(io: downloaded_image, filename: 'avatar')
       end
     end
