@@ -1,7 +1,9 @@
 <%= title t(:create_resource, resource: t(:user_bulk, scope: 'activerecord.models')) %>
 
 <%= content_for :right do %>
-  <%= link_to t(:back), admin_user_bulks_path %>
+  <%= link_to admin_user_bulks_path do %>
+    <i class="fas fa-arrow-left"></i> <%= t(:back) %>
+  <% end %>
 <% end %>
 
 <%= render 'form', user_bulk: @user_bulk %>

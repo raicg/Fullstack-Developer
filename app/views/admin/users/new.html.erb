@@ -1,7 +1,9 @@
 <%= title t(:create_resource, resource: t(:user, scope: 'activerecord.models')) %></h1>
 
 <%= content_for :right do %>
-  <%= link_to t(:back), admin_users_path %>
+  <%= link_to admin_users_path do %>
+    <i class="fas fa-arrow-left"></i> <%= t(:back) %>
+  <% end %>
 <% end %>
 
 <%= render 'form', user: @user %>

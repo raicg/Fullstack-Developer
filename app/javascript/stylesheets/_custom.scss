@@ -1,7 +1,7 @@
 .right-content{
   a{
     @extend .btn;
-    @extend .btn-primary;
+    @extend .btn-success;
     @extend .ml-3;
     float: right;
   }
@@ -20,9 +20,10 @@
     }
     .form-actions{
       @extend .text-center;
+      @extend .mb-4;
       input{
         @extend .btn;
-        @extend .btn-primary;
+        @extend .btn-success;
       }
     }
   }
@@ -41,4 +42,16 @@
 }
 .badge-completed{
   @extend .badge-success;
+}
+.social-medias{
+  a{
+    text-decoration: none;
+    font-size: large;
+    @extend .text-white;
+    @extend .ml-1;
+    @extend .mr-2;
+    :hover{
+      color: black;
+    }
+  }
 }
